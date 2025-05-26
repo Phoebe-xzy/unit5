@@ -1,4 +1,5 @@
 //Unit 5 Project
+boolean upKey, downKey, leftKey, rightKey;
 
 int mode;
 boolean clickedOnce = false;
@@ -9,32 +10,59 @@ final int GAME = 1;
 final int PAUSE = 2;
 final int GAMEOVER = 3;
 
+
 color black = #222222;
 color white = #ffffff;
 color darkBlue = #1c5d99;
 color lightPink = #ffa69e;
 color darkPink = #ff686b;
 color purple = #7b2cbf;
+color darkPurple = #3c096c;
 color lightPurple = #e0aaff;
+color grey = #778da9;
+color red = #800f2f;
 
 float cx, cy;// position
-float ballx, bally, balld,   
-d;//diameter;
+float ballx, bally, balld,
+  d;//diameter;
 
 float vx = 1, vy = -20;
+
+float brickd = 80;
+
 
 //Brick Variables
 int[] x;
 int[] y;
+int n;
 
+int tempx = 100;
+int tempy = 100;
 
-void setup(){
-  size (600, 600);
+void setup() {
+  size (800, 800);
+
+  
   //setup array of bricks
-  x = new int[3];
-  y = new int[3];
-
-
+  n = 25;
+  x = new int[n];
+  y = new int[n];
+  
+   //Auto Generative 
+  int k = 0;
+  while (k < n){
+    x[k] = tempx;
+    y[k] = tempy;
+    tempx = tempx + 100;
+    if (tempx == width){
+      tempy = tempy + 100; 
+      tempx = 100;
+    }
+    
+    k++;
+  }
+  cx = width/2;
+  cy = height;
 
 }
 
@@ -50,9 +78,13 @@ void mousePressed() {
   }
 }
 
-void draw(){
+void mouseReleased() {
+  clickedOnce = false;
+}
 
- if (mode == INTRO) {
+void draw() {
+
+  if (mode == INTRO) {
     intro();
   } else if (mode == GAME) {
     game();
@@ -63,5 +95,6 @@ void draw(){
   } else {
     println("ERROR!, Mode is " + mode);
   }
-
+  
+  
 }
