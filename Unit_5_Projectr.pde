@@ -26,14 +26,15 @@ float cx, cy;// position
 float ballx, bally, balld,
   d;//diameter;
 
-float vx = 1, vy = -20;
+float vx = 1, vy = 20;
 
-float brickd = 80;
+
 
 
 //Brick Variables
 int[] x;
 int[] y;
+boolean [] alive;
 int n;
 
 int tempx = 100;
@@ -47,19 +48,21 @@ void setup() {
   n = 25;
   x = new int[n];
   y = new int[n];
+  alive = new boolean[n];
   
    //Auto Generative 
-  int k = 0;
-  while (k < n){
-    x[k] = tempx;
-    y[k] = tempy;
+  int i = 0;
+  while (i < n){
+    x[i] = tempx;
+    y[i] = tempy;
+    alive[i] = true;
     tempx = tempx + 100;
     if (tempx == width){
       tempy = tempy + 100; 
       tempx = 100;
     }
     
-    k++;
+    i++;
   }
   cx = width/2;
   cy = height;
