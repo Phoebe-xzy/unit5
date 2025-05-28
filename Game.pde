@@ -1,4 +1,5 @@
 float brickd = 60;
+String score;
 void game() {
   d = 130;
   balld = 20;
@@ -10,6 +11,7 @@ void game() {
   fill(darkPink);
   stroke(lightPink);
   circle(ballx, bally, balld);
+
 
   //Keyboard
   if (upKey) cy = cy - 5;
@@ -30,6 +32,7 @@ void game() {
   if (bally >= height -balld/2) { //bottom
     vy = -vy * 0.95;
     bally = height -balld/2;
+    livesCounter = livesCounter - 1;
   }
 
 
@@ -50,7 +53,17 @@ void game() {
     if (alive[i] == true) {
       manageBricks(i);
     }
-     i = i+1;
+    i = i+1;
+  }
+  score();
+
+  if (pointCounter == n || livesCounter == 0) {
+    int k = 0;
+    mode = GAMEOVER;
+    while (k < n) {
+      alive[k] = true;
+      k++;
+    }
   }
 }
 
@@ -69,6 +82,7 @@ void manageBricks(int i) {
     vx = (ballx - x[i]) / 5;
     vy = (bally - y[i]) / 5;
     alive[i] = false;
+    pointCounter ++;
   }
 
 
@@ -100,4 +114,13 @@ void keyReleased() {
     if (keyCode == LEFT) leftKey = false;
     if (keyCode == RIGHT) rightKey = false;
   }
+}
+
+void score() {
+  fill(255);
+  textSize(24);
+  textAlign(LEFT, TOP);
+  text("Score: " + pointCounter, 20, 20);
+  textAlign(LEFT, TOP);
+  text("Lives: " + livesCounter, 20, 720);
 }

@@ -4,11 +4,15 @@ boolean upKey, downKey, leftKey, rightKey;
 int mode;
 boolean clickedOnce = false;
 String text;
+String text2;
 
 final int INTRO = 0;
 final int GAME = 1;
 final int PAUSE = 2;
 final int GAMEOVER = 3;
+
+int pointCounter;
+int livesCounter;
 
 
 color black = #222222;
@@ -42,37 +46,39 @@ int tempy = 100;
 
 void setup() {
   size (800, 800);
+  pointCounter = 0;
+  livesCounter = 5;
 
-  
   //setup array of bricks
-  n = 25;
+  n = 28;
   x = new int[n];
   y = new int[n];
   alive = new boolean[n];
-  
-   //Auto Generative 
+
+  //Auto Generative
   int i = 0;
-  while (i < n){
+  while (i < n) {
     x[i] = tempx;
     y[i] = tempy;
     alive[i] = true;
     tempx = tempx + 100;
-    if (tempx == width){
-      tempy = tempy + 100; 
+    if (tempx == width) {
+      tempy = tempy + 100;
       tempx = 100;
     }
-    
+
     i++;
   }
   cx = width/2;
   cy = height;
-
 }
 
 void mousePressed() {
   if (!clickedOnce) {
-    if (mode < 3) {
+    if (mode < 3 && mode != PAUSE) {
       mode = mode + 1;
+    } else if (mode == PAUSE) {
+      mode = GAME;
     } else {
       mode = INTRO;
     }
@@ -98,6 +104,4 @@ void draw() {
   } else {
     println("ERROR!, Mode is " + mode);
   }
-  
-  
 }
