@@ -30,7 +30,9 @@ float cx, cy;// position
 float ballx, bally, balld,
   d;//diameter;
 
-float vx = 1, vy = 20;
+float vx, vy;
+
+
 
 
 
@@ -45,9 +47,10 @@ int tempx = 100;
 int tempy = 100;
 
 void setup() {
+  //To adjust lives go to Intro page.
   size (800, 800);
   pointCounter = 0;
-  livesCounter = 5;
+  
 
   //setup array of bricks
   n = 28;
@@ -69,8 +72,6 @@ void setup() {
 
     i++;
   }
-  cx = width/2;
-  cy = height;
 }
 
 void mousePressed() {

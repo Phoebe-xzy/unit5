@@ -19,7 +19,6 @@ void game() {
   if (leftKey) cx = cx - 5;
   if (rightKey) cx = cx+ 5;
 
-
   ballx += vx;
   bally += vy;
 

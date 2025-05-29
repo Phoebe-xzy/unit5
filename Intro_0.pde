@@ -1,6 +1,14 @@
 //Intro
 
 void intro(){
+  ballx = width/2;
+  bally = height/2 + 100;
+  vx = 0;
+  vy = 5;
+  
+  cx = width/2;
+  cy = height;
+  
   text = "Break Out";
   background(255);
   startButton(text, black);
