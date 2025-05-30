@@ -32,6 +32,10 @@ void game() {
     vy = -vy * 0.95;
     bally = height -balld/2;
     livesCounter = livesCounter - 1;
+    ballx = width/2;
+    bally = height/2 + 100;
+    vx = 0;
+    vy = 5;
   }
 
 
@@ -55,6 +59,7 @@ void game() {
     i = i+1;
   }
   score();
+  restart();
 
   if (pointCounter == n || livesCounter == 0) {
     int k = 0;
@@ -122,4 +127,19 @@ void score() {
   text("Score: " + pointCounter, 20, 20);
   textAlign(LEFT, TOP);
   text("Lives: " + livesCounter, 20, 720);
+}
+
+
+
+void restart() {
+  String text3 = "Restart";
+  pushMatrix();
+  translate(width - 100, height - 80);
+  rectMode(CENTER);
+  rect(0, 0, 100, 70);
+  textAlign(CENTER, CENTER);
+  textSize(20);
+  fill(0);
+  text(text, 0, 0);
+  popMatrix();
 }
