@@ -1,6 +1,5 @@
 void pause(){
- drawPause(); 
-
+  drawPause();
 }
 
 void drawPause(){
